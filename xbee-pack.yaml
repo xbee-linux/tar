@@ -1,0 +1,31 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  The Tar package provides the ability to create tar archives as well as perform various other kinds of archive manipulation. Tar can be used on previously created archives to extract files, to store additional files, or to update or list files which were already stored.
+  Installed programs: tar
+  Installed directory: /usr/share/doc/tar-1.34
+  Short Descriptions
+    tar: Creates, extracts files from, and lists the contents of archives, also known as tarballs
+
+dependency: texinfo
+
+in:
+  version: 1.34
+
+provision:
+  - url:
+      from: https://ftp.gnu.org/gnu/tar/tar-{% version %}.tar.xz
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr
+        - make
+        - make install DESTDIR={% xbeeOut %}
+        - make -C doc install-html docdir={% xbeeOut %}/usr/share/doc/tar-1.34
+      directory: "{% xbeeSrc %}/tar-{% version %}"
+
+
