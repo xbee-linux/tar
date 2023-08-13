@@ -9,7 +9,7 @@ description: |
   Short Descriptions
     tar: Creates, extracts files from, and lists the contents of archives, also known as tarballs
 
-dependency: texinfo
+builder: texinfo
 
 var:
   version: 1.34
