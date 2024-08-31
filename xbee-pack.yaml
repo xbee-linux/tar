@@ -12,10 +12,11 @@ description: |
 builder: texinfo
 
 var:
-  version: 1.34
+  xbee:
+    version: 1.34
 
 provision:
-  url: https://ftp.gnu.org/gnu/tar/tar-{{ .version }}.tar.xz
+  url: https://ftp.gnu.org/gnu/tar/tar-{{ .xbee.version }}.tar.xz
 
 build:
   - shell:
@@ -24,6 +25,6 @@ build:
         - make
         - make install DESTDIR={{ .xbee.out }}
         - make -C doc install-html docdir={{ .xbee.out }}/usr/share/doc/tar-1.34
-      directory: "{{ .xbee.src }}/tar-{{ .version }}"
+      directory: "{{ .xbee.src }}/tar-{{ .xbee.version }}"
 
 
